@@ -3,12 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
+import { FormalizacaoModule} from  './formalizacao';
+
 @NgModule({
   declarations: [
     AppComponent
+    
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormalizacaoModule
   ],
   providers: [],
   bootstrap: [AppComponent]
