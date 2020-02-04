@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormalizacaoService} from '../_services/formalizacao.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-formalizacao',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormalizacaoComponent implements OnInit {
 
-  constructor() { }
+  ngUnsubscribe = new Subject();
+
+  constructor(private formService: FormalizacaoService) { }
 
   ngOnInit() {
+   
+     // this.search(); buscar aqui
+    
+
+  }
+
+  ngOnDestroy(){
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
 }
