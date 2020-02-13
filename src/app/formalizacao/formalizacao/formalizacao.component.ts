@@ -9,20 +9,30 @@ import { Subject } from 'rxjs';
 })
 export class FormalizacaoComponent implements OnInit {
 
-  ngUnsubscribe = new Subject();
+  adesoes = [];
+  
+  
 
-  constructor(private formService: FormalizacaoService) { }
+  constructor(private formalizacaoService: FormalizacaoService) { }
 
-  ngOnInit() {
-   
-     // this.search(); buscar aqui
+  ngOnInit() {     
+    this.formalizacaoService.searchAdesao().subscribe(
+      data =>{
+        this.adesoes = data ;
+      },
+      error => {
+        console.log('Error ao buscar adesões')
+      }
+    );
     
-
   }
 
   ngOnDestroy(){
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
+    
+  }
+      
   }
 
-}
+ 
+
+

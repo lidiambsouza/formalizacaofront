@@ -6,58 +6,59 @@
 
             </div>
             <div class="card-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Número</th>
+                            <th>Status</th>
+                            <!--<th>Cliente</th>
+                            <th>CPF</th>-->
+                            <th>Matrícula</th>
+                            <th>Data Proposta</th>
+                            <th>Serviço</th>
+                            <th>Loja</th>
+                            <th>Entidade</th>
+                            <th>Valor</th>
+                            <th>Resposta BMG</th>
+                            <th>Resposta Corban</th>
+                            <th>Consultor</th>
+                            <th>Limite Cartão</th>
+                            <th>Status Cartão</th>
+                            <th>error</th>
+                            <th>Data Criação</th>
+                            <th>Data Atualização</th>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let adesao of adesoes">
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 mx-auto">
-                            <div class="md-form">
-                                <input type="text" class="form-control" [(ngModel)]="searchText" (keyup)="searchItems()" id="search-input" mdbInput>
-                                <label for="search-input">Search</label>
-                            </div>
-                        </div>
-                        <table mdbTable #tableEl="mdbTable" stickyHeader="true" hover="true" striped="true" class="z-depth-1">
-                            <thead class="sticky-top">
-                                <tr>
-                                    <th *ngFor="let head of headElements; let i = index" [mdbTableSort]="elements" [sortBy]="headElements[i]" scope="col">{{head | titlecase}}
-                                        <mdb-icon fas icon="sort"></mdb-icon>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody #row>
-                                <tr mdbTableCol (rowCreated)="onRowCreate($event)" (rowRemoved)="onRowRemove($event)" *ngFor="let el of elements; let i = index">
-                                    <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <  mdbTablePagination.lastItemIndex" scope="row">{{el.id}}
-                                    </th>
-                                    <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <  mdbTablePagination.lastItemIndex" class="red-text">{{el.first}}
-                                    </td>
-                                    <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <  mdbTablePagination.lastItemIndex">
-                                        {{el.last}}
-                                    </td>
-                                    <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i <  mdbTablePagination.lastItemIndex">
-                                        {{el.handle}}
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <tfoot class="grey lighten-5 w-100">
+                            <td>{{adesao.number}}</td>
+                            <td>{{adesao.status}}</td>
+                            <!-- <td>{{adesao.}}</td>
+                            <td>{{adesao.}}</td>-->
+                            <td>{{adesao.matricula}}</td>
+                            <td>{{adesao.data_proposta}}</td>
+                            <td>{{adesao.servico}}</td>
+                            <td>{{adesao.loja}}</td>
+                            <td>{{adesao.entidade}}</td>
+                            <td>{{adesao.valor}}</td>
+                            <td>{{adesao.resp_bmg}}</td>
+                            <td>{{adesao.resp_corban}}</td>
+                            <td>{{adesao.consultor}}</td>
+                            <td>{{adesao.limite_cartao}}</td>
+                            <td>{{adesao.status_cartao}}</td>
+                            <td>{{adesao.error}}</td>
+                            <td>{{adesao.created_at}}</td>
+                            <td>{{adesao.updated_at}}</td>
 
-                                <tr>
-                                    <td colspan="4">
-                                        <mdb-table-pagination [tableEl]="tableEl" paginationAlign="" [searchDataSource]="elements"></mdb-table-pagination>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
+                        </tr>
+                    </tbody>
 
 
-
-
-
-
+                </table>
 
 
             </div>
         </div>
     </div>
-</div>
 </div>
