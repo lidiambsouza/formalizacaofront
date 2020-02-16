@@ -1,64 +1,68 @@
 <div class="main-content">
     <div class="container-fluid">
-        <div class="card">
-            <div id="HDpesquisaCliente" class="card-header card-header-primary">
-                <h4 class="card-title">Informações Formalização</h4>
+        <div class="card">           
+            
+                <p-table class="marginTable table table-hover table-striped table-responsive"  #dt [value]="adesoes" [resizableColumns]="true" [responsive]="true"  [paginator]="true" [rows]="10">
+<!--                    
+                    <ng-template pTemplate="caption">
+                        <div style="text-align: right">        
+                            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                            <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                        </div>
+                    </ng-template> -->
 
-            </div>
-            <div class="card-body">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Número</th>
-                            <th>Status</th>
-                            <!--<th>Cliente</th>
-                            <th>CPF</th>-->
-                            <th>Matrícula</th>
-                            <th>Data Proposta</th>
-                            <th>Serviço</th>
-                            <th>Loja</th>
-                            <th>Entidade</th>
-                            <th>Valor</th>
-                            <th>Resposta BMG</th>
-                            <th>Resposta Corban</th>
-                            <th>Consultor</th>
-                            <th>Limite Cartão</th>
-                            <th>Status Cartão</th>
-                            <th>error</th>
-                            <th>Data Criação</th>
-                            <th>Data Atualização</th>-->
+                    <ng-template pTemplate="header">
+                        <tr class="fontMenor" >
+                            <th pResizableColumn >Número</th>
+                            <th pResizableColumn >Status</th>
+                            <th pResizableColumn >Cliente</th>
+                            <th pResizableColumn >CPF</th>
+                            <th pResizableColumn >Matrícula</th>
+                            <th pResizableColumn >Data Proposta</th>
+                            <th pResizableColumn >Serviço</th>
+                            <th pResizableColumn >Loja</th>
+                            <th pResizableColumn >Entidade</th>
+                            <th pResizableColumn >Valor</th>
+                            <th pResizableColumn >Resposta BMG</th>
+                            <th pResizableColumn >Resposta Corban</th>
+                            <th pResizableColumn >Consultor</th>
+                            <th pResizableColumn >Limite Cartão</th>
+                            <th pResizableColumn >Status Cartão</th>
+                            <th pResizableColumn >error</th>
+                            <th pResizableColumn >Data Criação</th>
+                            <th pResizableColumn >Data Atualização</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let adesao of adesoes">
+                    </ng-template>
+                    <ng-template pTemplate="body" let-adesao >
+                        <tr class="fontMenor" >
 
-                            <td>{{adesao.number}}</td>
-                            <td>{{adesao.status}}</td>
-                            <!-- <td>{{adesao.}}</td>
-                            <td>{{adesao.}}</td>-->
-                            <td>{{adesao.matricula}}</td>
-                            <td>{{adesao.data_proposta}}</td>
-                            <td>{{adesao.servico}}</td>
-                            <td>{{adesao.loja}}</td>
-                            <td>{{adesao.entidade}}</td>
-                            <td>{{adesao.valor}}</td>
-                            <td>{{adesao.resp_bmg}}</td>
-                            <td>{{adesao.resp_corban}}</td>
-                            <td>{{adesao.consultor}}</td>
-                            <td>{{adesao.limite_cartao}}</td>
-                            <td>{{adesao.status_cartao}}</td>
-                            <td>{{adesao.error}}</td>
-                            <td>{{adesao.created_at}}</td>
-                            <td>{{adesao.updated_at}}</td>
+                            <td class="ui-resizable-column" >{{adesao.number}}</td>
+                            <td class="ui-resizable-column" >{{adesao.status}}</td>
+                            <td class="ui-resizable-column" >{{adesao.client}}</td>
+                            <td class="ui-resizable-column" >{{adesao.cpf}}</td>
+                            <td class="ui-resizable-column" >{{adesao.matricula}}</td>
+                            <td class="ui-resizable-column" >{{adesao.data_proposta}}</td>
+                            <td class="ui-resizable-column" >{{adesao.servico}}</td>
+                            <td class="ui-resizable-column" >{{adesao.loja}}</td>
+                            <td class="ui-resizable-column" >{{adesao.entidade}}</td>
+                            <td class="ui-resizable-column" >{{adesao.valor}}</td>
+                            <td class="ui-resizable-column" >{{adesao.resp_bmg}}</td>
+                            <td class="ui-resizable-column" >{{adesao.resp_corban}}</td>
+                            <td class="ui-resizable-column" >{{adesao.consultor}}</td>
+                            <td class="ui-resizable-column" >{{adesao.limite_cartao}}</td>
+                            <td class="ui-resizable-column" >{{adesao.status_cartao}}</td>
+                            <td class="ui-resizable-column" >{{adesao.error}}</td>
+                            <td class="ui-resizable-column" >{{adesao.created_at}}</td>
+                            <td class="ui-resizable-column" >{{adesao.updated_at}}</td>
 
                         </tr>
-                    </tbody>
+                    </ng-template>
 
 
-                </table>
+                </p-table>
 
 
-            </div>
+            
         </div>
     </div>
 </div>

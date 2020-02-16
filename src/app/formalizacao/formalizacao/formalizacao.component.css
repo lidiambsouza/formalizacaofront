@@ -1,0 +1,21 @@
+:host ::ng-deep .ui-table .ui-table-thead > tr > th {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0px;
+}
+
+@media screen and (max-width: 64em) {
+    :host ::ng-deep .ui-table .ui-table-thead > tr > th {
+        top: 100px;
+    }
+}
+.marginTable{
+    margin-top: 5px;
+}
+
+.fontMenor{
+    font-size: x-small;
+}
+tr:hover{
+    background-color: rgba(0,0,0,.075);
+}
