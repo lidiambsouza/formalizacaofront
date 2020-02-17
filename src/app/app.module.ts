@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 import {MenubarModule} from 'primeng/menubar';
 import {ButtonModule} from 'primeng/button';
 
@@ -7,6 +8,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
 
 import { FormalizacaoModule} from  './formalizacao';
 
@@ -17,6 +19,7 @@ import { FormalizacaoModule} from  './formalizacao';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormalizacaoModule,
     MenubarModule,
     ButtonModule,   

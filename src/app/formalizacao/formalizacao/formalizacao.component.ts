@@ -16,15 +16,15 @@ export class FormalizacaoComponent implements OnInit {
   constructor(private formalizacaoService: FormalizacaoService) { }
 
   ngOnInit() {     
-    // this.formalizacaoService.searchAdesao().subscribe(
-    //   data =>{
-    //     this.adesoes = data ;
-    //   },
-    //   error => {
-    //     console.log('Error ao buscar adesões')
-    //   }
-    // );
-    this.adesoes = [{number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
+     this.formalizacaoService.searchAdesao().subscribe(
+       data =>{
+         this.adesoes = data ;
+       },
+        error => {
+        console.log('Error ao buscar adesões')
+      }
+     );
+   /* this.adesoes = [{number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
     data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
     valor: 12000,
     resp_bmg: 34,
@@ -287,7 +287,7 @@ export class FormalizacaoComponent implements OnInit {
     status_cartao: "aprvovado",
     error:"nenhum" ,
     created_at: "2020-02-16",
-    updated_at: "2020-02-16"}]
+    updated_at: "2020-02-16"}]*/
 
     
   }
