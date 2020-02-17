@@ -19,7 +19,9 @@ export class AppComponent {
             icon: 'pi pi-fw pi-file',
             items: [{
                     label: 'Consulta', 
-                    icon: 'pi pi-fw pi-search'
+                    icon: 'pi pi-fw pi-search',
+                    routerLink: ['/formalizacao'],
+                
                     
                 }               
             ]
