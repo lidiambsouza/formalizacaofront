@@ -1,7 +1,7 @@
 :host ::ng-deep .ui-table .ui-table-thead>tr>th {
     position: -webkit-sticky;
     position: sticky;
-    top: 0px;
+    top: 70px;
 }
 
 @media screen and (max-width: 64em) {
@@ -15,9 +15,14 @@
 }
 
 .fontMenor {
-    font-size: x-small;
+    font-size: xx-small;
 }
 
-tr:hover {
-    background-color: rgba(0, 0, 0, .075);
+.loading-text {
+    display: block;
+    background-color: #f1f1f1;
+    min-height: 19px;
+    animation: pulse 1s infinite ease-in-out;
+    text-indent: -99999px;
+    overflow: hidden;
 }
