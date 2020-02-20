@@ -1,6 +1,6 @@
-<p-menubar class="menuPrincipal" [model]="items">
+<p-menubar *ngIf="currentUser" class="menuPrincipal" [model]="items">
     <div>
-        <button pButton label="Logout" icon="pi pi-sign-out" class="ui-button-rounded ui-button-danger" style="margin-left:.25em"></button>
+        <button pButton label="Logout" (click)="logout()" icon="pi pi-sign-out" class="ui-button-rounded ui-button-danger" style="margin-left:.25em"></button>
     </div>
 </p-menubar>
 <router-outlet></router-outlet>
