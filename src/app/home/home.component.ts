@@ -20,9 +20,9 @@ export class HomeComponent implements OnInit {
     this.loading = true;
     this.userService.getAll().pipe().subscribe(users => {
       this.loading = false;
-      console.log(users);
+      
       this.users = Array.of(users);
-      console.log(this.users);
+      
     });
    
   }

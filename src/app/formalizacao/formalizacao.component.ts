@@ -42,8 +42,9 @@ export class FormalizacaoComponent implements OnInit {
     ];
 
 
-    this.formalizacaoService.searchAdesao().subscribe(
+    this.formalizacaoService.searchAdesao().pipe().subscribe(
        data =>{
+         console.log(data);
          this.adesoes = data;               
        },
         error => {
