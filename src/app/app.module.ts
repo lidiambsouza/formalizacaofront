@@ -14,8 +14,8 @@ import { FormalizacaoService } from './_services/formalizacao.service';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login';
 
-import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-import { fakeBackendProvider } from './_helpers';
+import {  ErrorInterceptor } from './_helpers';
+import { djangoBackendProvider } from './_helpers';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -44,8 +44,8 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   providers: [
     FormalizacaoService,
-    fakeBackendProvider,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    djangoBackendProvider,
+    
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
