@@ -17,12 +17,15 @@ export class AuthenticationService {
     constructor(private http: HttpClient) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
+        
     }
 
     private setSession(authResult) {
         const token = authResult.token;
         const payload = <User>jwtDecode(token);
         const expiresAt = moment.unix(payload.exp);
+        localStorage.setItem('currentUser', JSON.stringify(authResult)),
+        this.currentUserSubject.next(authResult),
 
         localStorage.setItem('token', authResult.token);
         localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
@@ -37,6 +40,7 @@ export class AuthenticationService {
             .pipe(
                 tap(response => this.setSession(response)),
                 shareReplay(),
+               
             );
     }
 

@@ -1,3 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+.fundo{
+    background-image: url(assets/img/backForma70.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-attachment: fixed;
+    
+    
+} 
 
-@import "~bootstrap/dist/css/bootstrap.css";
+body .ui-menubar{
+    background-color: #f18b42a1;
+   }
+
+   @media (min-width: 768px) {
+    .login{        
+        margin-left: 35% !important;
+    }
+
+    .nameSistema{
+        font-family: 'Monoton';
+        
+    }
+    
+
+}

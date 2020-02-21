@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
+import {PanelModule} from 'primeng/panel';
 import { FormalizacaoComponent } from './formalizacao';
 import { FormalizacaoService } from './_services/formalizacao.service';
 import { HomeComponent } from './home/home.component';
@@ -40,7 +41,8 @@ import { AppRoutingModule } from './app-routing.module';
     ButtonModule,
     TableModule,
     DialogModule,
-    InputTextModule
+    InputTextModule,
+    PanelModule
   ],
   providers: [
     FormalizacaoService,
