@@ -13,10 +13,15 @@ export class FormalizacaoComponent implements OnInit {
   adesoes: any[];
   cols: any[];
   display: boolean = false;
-  url: string ='https://cacovsky.files.wordpress.com/2011/01/captcha.png?w=584';
+  imageToShow: any;
+  loadingImg = false;
+  loadingTable=true;
+  values = '';
   
 
   constructor(private formalizacaoService: FormalizacaoService) { }
+
+  
 
   ngOnInit() {    
     this.display = true;
@@ -39,298 +44,48 @@ export class FormalizacaoComponent implements OnInit {
                        { field: 'error', header: 'error' },
                        { field: 'created_at', header: 'Data Criação'},
                        { field: 'updated_at', header: 'Data Atualização'}
-    ];
-
-
-    this.formalizacaoService.searchAdesao().pipe().subscribe(
-       data =>{
-         console.log(data);
-         this.adesoes = data;               
-       },
-        error => {
-        console.log('Error ao buscar adesões');
-      }
-
-     );   
-     
-     /*  this.formalizacaoService.searchCaptcha().subscribe(
+    ];     
+     this.formalizacaoService.searchImg().pipe().subscribe(
       data =>{
-        console.log(data); 
+        this.createImageFromBlob(data); 
               
       },
        error => {
        console.log('Error ao buscar imagem');
      }
 
-    ); 
-  this.adesoes = [{number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico: "cartao adesao", loja: 1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum",
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"},
-    {number:123 ,status:"em processo", client: "lidia" , cpf: 78734983287, matricula:123456,
-    data_proposta:"2020-02-16", servico:"cartao adesao", loja:1020, entidade: 234,
-    valor: 12000,
-    resp_bmg: 34,
-    resp_corban: 234,
-    consultor: "fulqana",
-    limite_cartao: 4000 ,
-    status_cartao: "aprvovado",
-    error:"nenhum" ,
-    created_at: "2020-02-16",
-    updated_at: "2020-02-16"}]*/
+    );   
 
     
   }
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+       this.imageToShow = reader.result;
+       this.loadingImg = true;
+       
+    }, false);
+ 
+    if (image) {
+       reader.readAsDataURL(image);
+    }
+ }
+ 
 
+ buscaBmg(event: any){
+  this.values += event.target.value + '';
+  this.formalizacaoService.searchAdesao(this.values).pipe().subscribe(
+    data =>{
+      console.log(data)
+     // this.adesoes = data;               
+    },
+     error => {
+     console.log('Error ao buscar adesões');
+   }
+
+  );  
+  this.loadingTable=false;
+ }
   ngOnDestroy(){
     
   }

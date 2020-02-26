@@ -45,3 +45,9 @@ body .ui-menubar{
 .ui-menuitem-link{
     background-color: #f18b42a1 !important;
 }
+
+
+.ui-dialog.ui-dialog-titlebar{
+    font-family: 'Monoton' !important;
+    color: #ff4b03e0 !important;
+}

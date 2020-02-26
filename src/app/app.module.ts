@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MenubarModule } from 'primeng/menubar';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
@@ -38,6 +39,7 @@ import { AppRoutingModule } from './app-routing.module';
     HttpClientModule,
 
     MenubarModule,
+    ProgressSpinnerModule,
     ButtonModule,
     TableModule,
     DialogModule,

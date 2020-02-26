@@ -1,11 +1,12 @@
 <div class="main-content">
     <div class="container-fluid">
-
+        
         <div class="card">
 
+           
 
-
-            <p-table class="table table-hover table-striped table-responsive" #dt [value]="adesoes" [columns]="cols" [scrollable]="true"  [responsive]="true" [paginator]="true" [rows]="20">
+            <p-table  class="table table-hover table-striped table-responsive" #dt [value]="adesoes" [columns]="cols" [scrollable]="true" [lazy]="true" [loading]="loadingTable" [responsive]="true" [paginator]="true" [rows]="20">
+               
 
                 <ng-template pTemplate="caption">
                     <div style="text-align: right">
@@ -31,12 +32,13 @@
             </p-table>
 
 
-            <p-dialog class="d-flex justify-content-center" header="Captcha" [(visible)]="display" [modal]="true" [draggable]="true" [resizable]="true">
-                <span>
-                    <img class="rounded mx-auto d-block" src="../../../../formalizacao_db/screenshot.png" alt="Captcha" >
+            <p-dialog class="d-flex justify-content-center rounded" header="Captcha" [(visible)]="display" [modal]="true" [draggable]="true" [resizable]="true">
+                <p-progressSpinner *ngIf="!loadingImg" [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".8s" class="d-flex justify-content-center "></p-progressSpinner>
+                <span *ngIf="loadingImg" >
+                    <img style="margin-bottom: 5px;" class="border border-danger border-bottom rounded" [src]="imageToShow" alt="Captcha" >
                 </span>
                 <span class="d-flex justify-content-center ui-float-label">
-                    <input id="float-input" type="text" size="30" placeholder="digite aqui o captcha" pInputText> 
+                    <input id="float-input" type="text" size="30" (keyup.enter)="buscaBmg($event)" placeholder="digite aqui o captcha" pInputText> 
                     
                 </span>
             </p-dialog>
