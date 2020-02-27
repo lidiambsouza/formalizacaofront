@@ -17,18 +17,20 @@ export class FormalizacaoService {
 
     searchAdesao(capt): Observable<any> {
       console.log(capt);
-      //this.http.get(environment.apiUrl+'consulta-ade',
+      //this.http.get(environment.apiUrl+'consulta-ade/',
         // {headers: this.httpHeaders}
        // );
 
        // return this.http.get(environment.apiUrl+'consulta-ade-bmg/?recaptcha='+ capt,
        // {headers: this.httpHeaders});
 
-        return this.http.get(environment.apiUrl+'consulta-ade',
+        return this.http.get(environment.apiUrl+'consulta-ade/',
          {headers: this.httpHeaders}
          );
                     
     };
+
+
     searchImg(): Observable<any>{
       return this.http.get(environment.apiUrl+'image/',
       {responseType: 'blob'}

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MessageService} from 'primeng/api';
+
 
 import {FormalizacaoService} from '../_services/formalizacao.service';
 import { Subject } from 'rxjs';
@@ -6,7 +8,8 @@ import { Subject } from 'rxjs';
 @Component({
   selector: 'app-formalizacao',
   templateUrl: './formalizacao.component.html',
-  styleUrls: ['./formalizacao.component.css']
+  styleUrls: ['./formalizacao.component.css'],
+  providers: [MessageService]
 })
 export class FormalizacaoComponent implements OnInit {
 
@@ -16,10 +19,11 @@ export class FormalizacaoComponent implements OnInit {
   imageToShow: any;
   loadingImg = false;
   loadingTable=true;
+  
   values = '';
   
 
-  constructor(private formalizacaoService: FormalizacaoService) { }
+  constructor(private formalizacaoService: FormalizacaoService, private messageService: MessageService) { }
 
   
 
@@ -41,7 +45,7 @@ export class FormalizacaoComponent implements OnInit {
                        { field: 'consultor', header: 'Consultor' },
                        { field: 'limite_cartao', header: 'Limite Cartão' },
                        { field: 'status_cartao', header: 'Status Cartão' },
-                       { field: 'error', header: 'error' },
+                     //  { field: 'error', header: 'error' },
                        { field: 'created_at', header: 'Data Criação'},
                        { field: 'updated_at', header: 'Data Atualização'}
     ];     
@@ -74,10 +78,13 @@ export class FormalizacaoComponent implements OnInit {
 
  buscaBmg(event: any){
   this.values += event.target.value + '';
+  this.display = false;
+  if(this.values){
+    this.messageService.clear();
   this.formalizacaoService.searchAdesao(this.values).pipe().subscribe(
     data =>{
       console.log(data)
-     // this.adesoes = data;               
+      this.adesoes = data;               
     },
      error => {
      console.log('Error ao buscar adesões');
@@ -85,6 +92,12 @@ export class FormalizacaoComponent implements OnInit {
 
   );  
   this.loadingTable=false;
+}
+  else{
+    this.messageService.add({severity:'error', summary:'ERROR: ', detail:'Digite captcha', closable:false});
+    this.display = true;
+
+  }
  }
   ngOnDestroy(){
     

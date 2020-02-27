@@ -58,7 +58,7 @@ export class AuthenticationService {
     }
 
     refreshToken() {
-        if (moment().isBetween(this.getExpiration().subtract(1, 'days'), this.getExpiration())) {
+        if (moment().isBetween(this.getExpiration().subtract(4, 'hours'), this.getExpiration())) {
             return this.http.post<any>(
                 environment.apiUrl+'auth/refresh-token/',
                 { token: this.token }
@@ -83,4 +83,16 @@ export class AuthenticationService {
     isLoggedOut() {
         return !this.isLoggedIn();
     }
+
+    signup(username: string, email: string, password1: string, password2: string) {
+        return this.http.post(
+            environment.apiUrl+'auth/signup/',
+          {username, email, password1, password2 }
+        ).pipe(
+          tap(response => this.setSession(response)),
+          shareReplay(),
+        );
+      }
+
+
 }

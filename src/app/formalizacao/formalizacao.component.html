@@ -30,7 +30,7 @@
 
 
             </p-table>
-
+            
 
             <p-dialog class="d-flex justify-content-center rounded" header="Captcha" [(visible)]="display" [modal]="true" [draggable]="true" [resizable]="true">
                 <p-progressSpinner *ngIf="!loadingImg" [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".8s" class="d-flex justify-content-center "></p-progressSpinner>
@@ -41,8 +41,9 @@
                     <input id="float-input" type="text" size="30" (keyup.enter)="buscaBmg($event)" placeholder="digite aqui o captcha" pInputText> 
                     
                 </span>
+                
             </p-dialog>
-
+            <p-toast [style]="{marginTop: '80px'}" position="top-center"></p-toast>
 
 
 
