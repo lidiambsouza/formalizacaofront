@@ -24,6 +24,8 @@ import { djangoBackendProvider } from './_helpers';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { CadastraruserComponent } from './cadastraruser';
+
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     FormalizacaoComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,    
+    CadastraruserComponent
   ],
   imports: [
     BrowserModule,

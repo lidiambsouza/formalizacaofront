@@ -63,7 +63,8 @@ export class AppComponent {
                 items: [
                     {
                         label: 'Cadastrar usuário',
-                        icon: 'pi pi-fw pi-user-plus'
+                        icon: 'pi pi-fw pi-user-plus',
+                        routerLink: ['/cadastraruser'],
                     },
                     {
                         label: 'Consultar usuário',

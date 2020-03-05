@@ -4,12 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 import {FormalizacaoComponent} from './formalizacao';
 import {HomeComponent} from './home';
 import { LoginComponent } from './login';
+import { CadastraruserComponent} from './cadastraruser';
 import { AuthGuard } from './_helpers';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'formalizacao', component: FormalizacaoComponent},
+  { path: 'cadastraruser', component: CadastraruserComponent},
   { path: '**', redirectTo: '' }
 
 ];
