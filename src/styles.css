@@ -30,6 +30,20 @@ body .ui-menubar{
     font-family: 'Krona One';
     font-size: 12px;
 }
+.textQlqr{
+    font-family: 'Krona One';
+    font-size: 12px;
+    color: #ff4b03e0;
+}
+
+.marginLabel{
+    margin-top: 30px;
+    margin-bottom: 21px;
+}
+
+.ui-float-label>input:focus ~ label, .ui-float-label>input.ui-state-filled ~ label, .ui-float-label>.ui-inputwrapper-focus ~ label, .ui-float-label>.ui-inputwrapper-filled ~ label{
+    font-size: 11px;
+}
 
 
 .ui-menuitem-link:hover,

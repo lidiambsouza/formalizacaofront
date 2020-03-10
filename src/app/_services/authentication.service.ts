@@ -1,7 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, tap, shareReplay } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { map, tap, shareReplay, catchError } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
 import { User } from '@app/_models';
@@ -13,7 +13,7 @@ import * as moment from 'moment';
 export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
-
+    public errors: any = []
     constructor(private http: HttpClient) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
@@ -65,6 +65,7 @@ export class AuthenticationService {
             ).pipe(
                 tap(response => this.setSession(response)),
                 shareReplay(),
+                
             ).subscribe();
         }
     }
@@ -84,13 +85,16 @@ export class AuthenticationService {
         return !this.isLoggedIn();
     }
 
-    signup(username: string, email: string, password1: string, password2: string) {
+    signup(username: string, email: string, password1: string, password2: string){
         return this.http.post(
             environment.apiUrl+'auth/signup/',
           {username, email, password1, password2 }
         ).pipe(
-          tap(response => this.setSession(response)),
+          tap(              
+            response => this.setSession(response),         
+          ),
           shareReplay(),
+         
         );
       }
 

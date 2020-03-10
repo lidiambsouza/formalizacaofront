@@ -13,16 +13,17 @@ import { Subject } from 'rxjs';
 })
 export class FormalizacaoComponent implements OnInit {
 
-  adesoes: any[];
-  
-  cols: any[];
-  display: boolean = false;
-  imageToShow: any;
-  loadingImg = false;
-  loadingTable = true;
-  
+  btSearchBMG: boolean;
+  adesoes: any[];//dados da adesão do banco
 
-  values = '';
+  cols: any[];//colunas da tabela
+  display: boolean = false;//não mostrar o modal
+  imageToShow: any; //imagem do captcha
+  loadingImg = false;//spinner do captcha
+  loadingTable = true;//spinner da tabela
+
+
+  values = '';//captcha digitado pelo usuario
 
 
   constructor(private formalizacaoService: FormalizacaoService, private messageService: MessageService) { }
@@ -30,8 +31,10 @@ export class FormalizacaoComponent implements OnInit {
 
 
   ngOnInit() {
-    this.display = true;
-    this.cols = [
+    this.formalizacaoService.btSearchBMG.subscribe(x => this.btSearchBMG = x)
+    console.log(this.btSearchBMG)
+    
+    this.cols = [//definir colunas da tabela
       { field: 'number', header: 'Número' },
       { field: 'status', header: 'Status' },
       { field: 'cpf', header: 'CPF' },
@@ -51,19 +54,55 @@ export class FormalizacaoComponent implements OnInit {
       { field: 'created_at', header: 'Data Criação' },
       { field: 'updated_at', header: 'Data Atualização' }
     ];
-    this.formalizacaoService.searchImg().pipe().subscribe(
+    //busca todas as adesões no banco de dados
+    this.formalizacaoService.searchAdesao().subscribe(data => {
+      this.adesoes = data;
+    }, error => {
+      this.messageService.add({ severity: 'error', summary: 'ERROR: ', detail: 'Error ao buscar Adesões', closable: false });
+    }, () => {
+      
+      this.loadingTable = false;
+    });
+
+  }
+
+  upBmg() {
+    
+    this.seachAdeApi();
+  }
+
+  seachAdeApi() {
+    this.formalizacaoService.searchAdesaoApi().subscribe(
       data => {
+        console.log(data);
+      },
+      error => {
+        console.log('Error ao buscar AdesaoApi');
+        this.messageService.add({ severity: 'error', summary: 'ERROR: ', detail: 'Error ao buscar Adesões Integradas', closable: false });
+      },
+      () => { 
+        this.display = true;
+        this.seachImagem();
+      }
+    );
+  }
+
+  seachImagem() {
+    this.formalizacaoService.searchImg().subscribe(
+      data => {
+
         this.createImageFromBlob(data);
 
       },
       error => {
         console.log('Error ao buscar imagem');
+        this.messageService.add({ severity: 'error', summary: 'ERROR: ', detail: 'Error ao buscar imagem', closable: false });
       }
 
     );
 
-
   }
+  //renderizar a imagem
   createImageFromBlob(image: Blob) {
     let reader = new FileReader();
     reader.addEventListener("load", () => {
@@ -79,21 +118,34 @@ export class FormalizacaoComponent implements OnInit {
 
 
   buscaBmg(event: any) {
-    this.values += event.target.value + '';
+    this.values += event.target.value + '';//verificar o que foi digitado
     this.display = false;
     if (this.values) {
       this.messageService.clear();
-      this.formalizacaoService.searchAdesao(this.values).pipe().subscribe(
+      this.formalizacaoService.updatebtSearchBMGValue(true);
+      console.log(this.btSearchBMG)
+      this.formalizacaoService.searchAdesaoBMG(this.values).subscribe(
         data => {
           console.log(data)
           this.adesoes = data;
-          
+         
+
         },
         error => {
-          console.log('Error ao buscar adesões');
+          this.messageService.add({ severity: 'error', summary: 'ERROR: ', detail: 'Captcha invalido!!!', closable: false });
+          this.formalizacaoService.updatebtSearchBMGValue(false);
+          console.log(this.btSearchBMG)
+          
+          this.display = true;
+          this.loadingImg = false;
+          this.values = '';
+          this.seachImagem();
+          
         },
         () => {
-          this.loadingTable = true;
+          this.formalizacaoService.updatebtSearchBMGValue(false);
+          console.log(this.btSearchBMG)
+          this.loadingTable = false;
         }
 
       );
@@ -106,7 +158,7 @@ export class FormalizacaoComponent implements OnInit {
     }
   }
 
-  
+
 
   ngOnDestroy() {
 

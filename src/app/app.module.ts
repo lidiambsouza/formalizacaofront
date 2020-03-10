@@ -12,6 +12,7 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import {PanelModule} from 'primeng/panel';
 import {ToastModule} from 'primeng/toast';
+import {PasswordModule} from 'primeng/password';
 
 import { FormalizacaoComponent } from './formalizacao';
 import { FormalizacaoService } from './_services/formalizacao.service';
@@ -50,7 +51,8 @@ import { CadastraruserComponent } from './cadastraruser';
     TableModule,
     DialogModule,
     InputTextModule,
-    PanelModule
+    PanelModule,
+    PasswordModule
   ],
   providers: [
     FormalizacaoService,
