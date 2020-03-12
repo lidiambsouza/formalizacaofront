@@ -20,26 +20,34 @@
                         </span>
                     </div>
                 </div>
-<br>
+                <br>
 
                 <div class="row d-flex justify-content-start">
                     <div class="col-md-3">
                         <h5 class="first text-capitalize textQlqr ">Senha</h5>
-                        <input #passOne pPassword type="password" promptLabel="Por favor, entre com a senha" weakLabel="Fraca"
-                            mediumLabel="Média" strongLabel="Forte" />
+                        <input #passOne pPassword type="password" promptLabel="Por favor, entre com a senha"
+                            weakLabel="Fraca" mediumLabel="Média" strongLabel="Forte" />
                     </div>
-                    
+
                     <div class="col-md-3">
                         <h5 class="first text-capitalize textQlqr">Confirmar senha</h5>
-                        <input #passTwo pPassword type="password" promptLabel="Por favor, confirme a senha" weakLabel="Fraca"
-                            mediumLabel="Média" strongLabel="Forte" />
+                        <input #passTwo pPassword type="password" promptLabel="Por favor, confirme a senha"
+                            weakLabel="Fraca" mediumLabel="Média" strongLabel="Forte" />
                     </div>
                     <div class="col-md-3">
-                        <button class="btn btn-outline-danger" (click)="signup(inputUser.value, inputEmail.value, passOne.value, passTwo.value)" style="margin-top: 20px;">cadastrar</button>
+                        <button class="btn btn-outline-danger"
+                            (click)="signup(inputUser.value, inputEmail.value, passOne.value, passTwo.value)"
+                            style="margin-top: 20px;">cadastrar</button>
                     </div>
 
                 </div>
-               
+                <!--
+<div class="row d-flex justify-content-start">
+                    <p> testo aqui: {{ error.error.message }}</p>
+                    <p *ngIf="error"> testo aqui2: {{ error | json }}</p>
+                </div>
+             -->
+
 
             </div>
         </div>
