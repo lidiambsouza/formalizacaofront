@@ -12,16 +12,19 @@ import { UserService, AuthenticationService } from '@app/_services';
 export class HomeComponent implements OnInit {
 
   loading = false;
-  users: User[];
+  users: any[];
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.loading = true;
-    this.userService.getAll().pipe(first()).subscribe(users => {
+    this.userService.getAll().pipe().subscribe(users => {
       this.loading = false;
-      this.users = users;
+      
+      this.users = Array.of(users);
+      
     });
+   
   }
 
 }

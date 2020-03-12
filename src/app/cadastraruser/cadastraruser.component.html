@@ -1,0 +1,47 @@
+<div class="main-content">
+    <div class="container-fluid align-self-center">
+        <div class="card">
+            <div class="card-header">
+            </div>
+            <div class="card-body">
+                <div class="row d-flex justify-content-start">
+                    <div class="col-md-6">
+                        <h5 class="text-capitalize textQlqr marginLabel">Nome de usuário</h5>
+                        <span class="ui-float-label">
+                            <input #inputUser id="float-inputUser" type="text" size="60%" pInputText>
+                            <label class="text-capitalize textQlqr" for="float-inputUser">Nome de usuário</label>
+                        </span>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="text-capitalize textQlqr marginLabel">Email</h5>
+                        <span class="ui-float-label">
+                            <input #inputEmail id="float-inputEmail" type="text" size="40" pInputText>
+                            <label class="text-capitalize textQlqr" for="float-inputEmail">Email</label>
+                        </span>
+                    </div>
+                </div>
+<br>
+
+                <div class="row d-flex justify-content-start">
+                    <div class="col-md-3">
+                        <h5 class="first text-capitalize textQlqr ">Senha</h5>
+                        <input #passOne pPassword type="password" promptLabel="Por favor, entre com a senha" weakLabel="Fraca"
+                            mediumLabel="Média" strongLabel="Forte" />
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <h5 class="first text-capitalize textQlqr">Confirmar senha</h5>
+                        <input #passTwo pPassword type="password" promptLabel="Por favor, confirme a senha" weakLabel="Fraca"
+                            mediumLabel="Média" strongLabel="Forte" />
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-outline-danger" (click)="signup(inputUser.value, inputEmail.value, passOne.value, passTwo.value)" style="margin-top: 20px;">cadastrar</button>
+                    </div>
+
+                </div>
+               
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+
+            </div>
+            <div class="card-body">
+                <h6 class="textQlqr" >Bem vindo(a) ao sistema de formalização!</h6>
+                <ul *ngIf="users">
+                    <li class="textQlqr" *ngFor="let user of users">{{user.first_name}}-{{user.last_name}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,18 +11,14 @@ import { AuthenticationService } from '@app/_services';
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
     loginForm: FormGroup;
     loading = false;
     submitted = false;
     returnUrl: string;
     error = '';
 
-    constructor(
-        private formBuilder: FormBuilder,
-        private route: ActivatedRoute,
-        private router: Router,
-        private authenticationService: AuthenticationService
-    ) {
+    constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private authenticationService: AuthenticationService) {
         // redirect to home if already logged in
         if (this.authenticationService.currentUserValue) {
             this.router.navigate(['/']);
@@ -30,6 +26,7 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
+
         this.loginForm = this.formBuilder.group({
             username: ['', Validators.required],
             password: ['', Validators.required]
@@ -55,10 +52,12 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
+                    console.log(this.returnUrl);
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
-                    this.error = error;
+                    //this.error = error.error.message;
+                    this.error="Nome de usuário ou senha incorreto!"        
                     this.loading = false;
                 });
     }
