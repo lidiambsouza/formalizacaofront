@@ -1,6 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { BehaviorSubject, Observable, of,throwError } from 'rxjs';
 import { map, tap, shareReplay, catchError } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
@@ -17,7 +17,7 @@ export class AuthenticationService {
     constructor(private http: HttpClient) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
-        
+
     }
 
     private setSession(authResult) {
@@ -25,9 +25,9 @@ export class AuthenticationService {
         const payload = <User>jwtDecode(token);
         const expiresAt = moment.unix(payload.exp);
         localStorage.setItem('currentUser', JSON.stringify(authResult)),
-        this.currentUserSubject.next(authResult),
+            this.currentUserSubject.next(authResult),
 
-        localStorage.setItem('token', authResult.token);
+            localStorage.setItem('token', authResult.token);
         localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
     }
 
@@ -36,11 +36,11 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string) {
-        return this.http.post<any>(environment.apiUrl+'auth/login/', {username, password})
+        return this.http.post<any>(environment.apiUrl + 'auth/login/', { username, password })
             .pipe(
                 tap(response => this.setSession(response)),
                 shareReplay(),
-               
+
             );
     }
 
@@ -60,12 +60,12 @@ export class AuthenticationService {
     refreshToken() {
         if (moment().isBetween(this.getExpiration().subtract(4, 'hours'), this.getExpiration())) {
             return this.http.post<any>(
-                environment.apiUrl+'auth/refresh-token/',
+                environment.apiUrl + 'auth/refresh-token/',
                 { token: this.token }
             ).pipe(
                 tap(response => this.setSession(response)),
                 shareReplay(),
-                
+
             ).subscribe();
         }
     }
@@ -84,19 +84,43 @@ export class AuthenticationService {
     isLoggedOut() {
         return !this.isLoggedIn();
     }
-
-    signup(username: string, email: string, password1: string, password2: string){
-        return this.http.post(
-            environment.apiUrl+'auth/signup/',
-          {username, email, password1, password2 }
-        ).pipe(
-          tap(              
-            response => this.setSession(response),         
-          ),
-          shareReplay(),
-         
-        );
+    private handleError (error: any) {
+        console.log(typeof(error))
+        if (error.error instanceof ErrorEvent) {
+          // A client-side or network error occurred. Handle it accordingly.
+          console.error('An error occurred:', error.error.message);
+        } else {
+          // The backend returned an unsuccessful response code.
+          // The response body may contain clues as to what went wrong,
+          console.error(
+            `Backend returned code ${error.status}, ` +
+            `body was: ${error.error}`);
+        }
+        // return an observable with a user-facing error message
+        return throwError(
+          'Something bad happened; please try again later.');
       }
+    
+    signup(username: string, email: string, password1: string, password2: string) {
+        return this.http.post(
+            environment.apiUrl + 'auth/signup/',
+            { username, email, password1, password2 }
+        ).pipe(
+            tap(
+                response => {
+                    this.setSession(response)
+                    console.log("response", response);
+                },
+            ),
+            catchError(error =>                
+                this.handleError(error)    
+                
+            ),
+            shareReplay(),
+
+
+        );
+    }
 
 
 }

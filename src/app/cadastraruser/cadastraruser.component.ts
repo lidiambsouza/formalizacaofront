@@ -23,18 +23,19 @@ export class CadastraruserComponent implements OnInit {
 
   signup(username: string, email: string, password1: string, password2: string) {
 
-    this.authenticationService.signup(username, email, password1, password2)
+   let sub= this.authenticationService.signup(username, email, password1, password2)
      .subscribe(
       success => {
-         console.log(success)
+         console.log("POST call in success",success)
         this.router.navigate(['/cadastraruser'])
       },
-      error =>{this.error = error
-      
-      }
-
+      error => {
+        console.log("POST call in error", error);
+      },
+      ()=>{ console.log(sub)}
 
     );
+    
 
 
   }
