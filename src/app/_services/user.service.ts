@@ -10,6 +10,7 @@ import { User } from '@app/_models';
 export class UserService {
 
     httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+    users: any;
     
     constructor(private http: HttpClient) {}
 
@@ -17,5 +18,17 @@ export class UserService {
         return this.http.get(environment.apiUrl+'auth/user/',
         {headers: this.httpHeaders}
         );
+    }
+
+    PermitAdm(): boolean{
+       this.getAll().pipe().subscribe(users => {           
+            this.users =users;
+            
+          });
+          
+          if (this.users.pk==3){
+              return true;
+          }
+          return false;
     }
 }

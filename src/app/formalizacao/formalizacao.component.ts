@@ -126,6 +126,7 @@ export class FormalizacaoComponent implements OnInit {
       console.log(this.btSearchBMG)
       this.formalizacaoService.searchAdesaoBMG(this.values).subscribe(
         data => {
+          console.log("aquiiii")
           console.log(data)
           this.adesoes = data;
          
