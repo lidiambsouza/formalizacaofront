@@ -50,6 +50,9 @@ export class FormalizacaoComponent implements OnInit {
       { field: 'consultor', header: 'Consultor' },
       { field: 'limite_cartao', header: 'Limite Cartão' },
       { field: 'status_cartao', header: 'Status Cartão' },
+      { field: 'data_pagamento', header: 'Data Pagamento' },
+      { field: 'situacao_pagamento', header: 'Situacao Pagamento' },
+      { field:  'valor_pagamento', header: 'Valor Pagamento' },
       //  { field: 'error', header: 'error' },
       { field: 'created_at', header: 'Data Criação' },
       { field: 'updated_at', header: 'Data Atualização' }
