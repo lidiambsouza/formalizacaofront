@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://35.199.81.70:8000/'
+  apiUrl: 'http://iwmform.unicabr.com:8000/'
 };
