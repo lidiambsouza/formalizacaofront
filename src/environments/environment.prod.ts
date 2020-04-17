@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://iwmform.unicabr.com:8000/'
+  apiUrl: 'http://iwmform.euquerograna.com.br:8050/'
 };
