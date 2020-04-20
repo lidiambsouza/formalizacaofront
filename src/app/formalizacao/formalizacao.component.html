@@ -33,7 +33,7 @@
                     <ng-template pTemplate="body" let-rowData let-columns="columns">
                         <tr class="fontMenor">
                             <td *ngFor="let col of columns">
-                                {{(col.field === 'data_proposta' || col.field === 'created_at' || col.field === 'updated_at')? (rowData[col.field] | date: 'dd/MM/yyyy hh:mm:ss'):(rowData[col.field]) }}
+                                {{(col.field === 'data_proposta' || col.field === 'created_at' || col.field === 'updated_at')? (rowData[col.field] | date: 'dd/MM/yyyy HH:mm:ss'):(rowData[col.field]) }}
                             </td>
                         </tr>
                     </ng-template>
