@@ -58,7 +58,7 @@ export class AuthenticationService {
     }
 
     refreshToken() {
-        if (moment().isBetween(this.getExpiration().subtract(4, 'hours'), this.getExpiration())) {
+        if (moment().isBetween(this.getExpiration().subtract(12, 'hours'), this.getExpiration())) {
             return this.http.post<any>(
                 environment.apiUrl + 'auth/refresh-token/',
                 { token: this.token }
