@@ -1,0 +1,45 @@
+:host ::ng-deep .ui-table .ui-table-thead>tr>th {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 70px;
+}
+
+@media screen and (max-width: 64em) {
+     :host ::ng-deep .ui-table .ui-table-thead>tr>th {
+        top: 100px;
+    }
+}
+
+.marginTable {
+    margin-top: 5px;
+}
+
+.fontMenor {
+    font-size: xx-small;
+}
+
+.loading-text {
+    display: block;
+    background-color: #f1f1f1;
+    min-height: 19px;
+    animation: pulse 1s infinite ease-in-out;
+    text-indent: -99999px;
+    overflow: hidden;
+}
+
+@keyframes ui-progress-spinner-color {
+    100%,
+    0% {
+        stroke: #d62d20;
+    }
+    40% {
+        stroke: #0057e7;
+    }
+    66% {
+        stroke: #008744;
+    }
+    80%,
+    90% {
+        stroke: #ffa700;
+    }
+}

@@ -1,0 +1,71 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header"></div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between mt-2 m-2">
+                    <div>
+                        <p>Consultor: </p>
+                       <p-dropdown [options]="consultores" class="" placeholder="consultor"
+                            [virtualScroll]="true" [itemSize]="25" [filter]="true"></p-dropdown>
+                          
+                        
+                    </div>
+
+                    <div>
+                        <p>Resposta Coban: </p>
+                        <p-dropdown [options]="coban" class="" placeholder="resposta COBAN"
+                            [virtualScroll]="true" [itemSize]="25" [filter]="true"></p-dropdown>
+                    </div>
+                    <div>
+                        <p>Resposta BMG: </p>
+                        <span class="  ui-float-label">
+                            <p-dropdown [options]="bmg" class="" 
+                            [virtualScroll]="true" [itemSize]="25" [filter]="true"></p-dropdown>
+                            <label for="float-input">Resposta BMG: </label>
+                        </span>
+                    </div>
+
+                    <div>
+
+                        <p>Status: </p>
+                        <span class="  ui-float-label">
+                            <p-dropdown [options]="status" class="" 
+                            [virtualScroll]="true" [itemSize]="25" [filter]="true"></p-dropdown>
+                            <label for="float-input">Status: </label>
+                        </span>                       
+                    </div>
+
+                </div>
+                <!--tabela de dados-->
+                <p-table class="table table-hover table-striped table-responsive" #dt [value]="adesoes" [rows]="20"
+                    [columns]="cols" [responsive]="true" [scrollable]="true" [loading]="loadingTable"
+                    [paginator]="true">
+
+                    <ng-template pTemplate="header" let-columns>
+                        <tr class="fontMenor">
+                            <th *ngFor="let col of columns" [pSortableColumn]="col.field">{{col.header}}
+                                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                                    ariaLabelDesc="Activate to sort in descending order"
+                                    ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr class="fontMenor">
+                            <td *ngFor="let col of columns">
+                                {{(col.field === 'data_proposta' || col.field === 'created_at' || col.field === 'updated_at')? (rowData[col.field] | date: 'dd/MM/yyyy HH:mm:ss'):(rowData[col.field]) }}
+                            </td>
+                        </tr>
+                    </ng-template>
+
+                </p-table>
+                <!--tabela de dados-->
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

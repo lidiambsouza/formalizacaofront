@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService, LazyLoadEvent } from 'primeng/api';
 
 
-import { FormalizacaoService } from '../_services/formalizacao.service';
+import { FormalizacaoService } from '../_services';
 import { Subject } from 'rxjs';
 
 @Component({

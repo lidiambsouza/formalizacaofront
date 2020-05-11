@@ -13,9 +13,11 @@ import { InputTextModule } from 'primeng/inputtext';
 import {PanelModule} from 'primeng/panel';
 import {ToastModule} from 'primeng/toast';
 import {PasswordModule} from 'primeng/password';
+import {DropdownModule} from 'primeng/dropdown';
+import {MessageModule} from 'primeng/message';
 
 import { FormalizacaoComponent } from './formalizacao';
-import { FormalizacaoService } from './_services/formalizacao.service';
+import { FormalizacaoService, RelatorioService } from './_services';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login';
 
@@ -26,6 +28,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { CadastraruserComponent } from './cadastraruser';
+import { RelatorioPagamentoComponent } from './relatorio-pagamento';
+import { RelatorioGeralComponent } from './relatorio-geral';
 
 
 
@@ -35,7 +39,7 @@ import { CadastraruserComponent } from './cadastraruser';
     FormalizacaoComponent,
     HomeComponent,
     LoginComponent,    
-    CadastraruserComponent
+    CadastraruserComponent, RelatorioPagamentoComponent, RelatorioGeralComponent
   ],
   imports: [
     BrowserModule,
@@ -52,10 +56,13 @@ import { CadastraruserComponent } from './cadastraruser';
     DialogModule,
     InputTextModule,
     PanelModule,
-    PasswordModule
+    PasswordModule,
+    DropdownModule,    
+    MessageModule,
   ],
   providers: [
     FormalizacaoService,
+    RelatorioService,
     djangoBackendProvider,
     
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

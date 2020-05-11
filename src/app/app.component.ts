@@ -48,12 +48,14 @@ export class AppComponent {
                 icon: 'pi pi-fw pi-chart-line',
                 items: [
                     {
-                        label: 'Relátorio B',
-                        icon: 'pi pi-fw pi-chart-bar'
+                        label: 'Relátorio Geral',
+                        icon: 'pi pi-fw pi-chart-bar',
+                        routerLink: ['/relatoriogeral'],
                     },
                     {
-                        label: 'Relátorio B',
-                        icon: 'pi pi-fw pi-list'
+                        label: 'Relátorio Pagamento',
+                        icon: 'pi pi-fw pi-list',
+                        routerLink: ['/relatoriopagamento'],
                     },
                 ]
             },
