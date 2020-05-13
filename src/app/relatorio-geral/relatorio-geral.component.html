@@ -6,22 +6,29 @@
                 <div class="d-flex justify-content-between mt-2">
                     <div>
                         <p class="textCor">Consultor: </p>
-                        <p-dropdown [options]="consultores" class="" placeholder="consultor" [(ngModel)]="consultorS"
+                        <span class="  ui-float-label">
+                            <p-dropdown [options]="consultores" class="" [(ngModel)]="consultorS"
                             [virtualScroll]="true" [itemSize]="25" [filter]="true"></p-dropdown>
+                            <label for="float-input">Consultor</label>
+                        </span>
+                        
                     </div>
 
                     <div>
-                        <p class="textCor">Resposta Coban: </p>
-                        <p-dropdown [options]="coban" class="" placeholder="resposta COBAN" [(ngModel)]="cobanS"
+                        <p class="textCor">Resposta Corban: </p>
+                        <span class="  ui-float-label">
+                            <p-dropdown [options]="coban" class="" [(ngModel)]="cobanS"
                             [virtualScroll]="true" [itemSize]="25" [filter]="true"></p-dropdown>
+                            <label for="float-input">Resposta Corban</label>
+                        </span>             
+                       
                     </div>
-
                     <div>
                         <p class="textCor">Resposta BMG: </p>
                         <span class="  ui-float-label">
                             <p-dropdown [options]="bmg" [(ngModel)]="bmgS" [virtualScroll]="true" [itemSize]="25"
                                 [filter]="true"></p-dropdown>
-                            <label for="float-input">Resposta BMG </label>
+                            <label for="float-input">Resposta BMG</label>
                         </span>
                     </div>
 
@@ -33,15 +40,7 @@
                             <label for="float-input">Status </label>
                         </span>
                     </div>
-                    <div>
-                        <p class="textCor">Data de atualização: </p>
-                        <span class=" ui-float-label">
-                            <p-calendar [(ngModel)]="dataup" [locale]="ptBR" [monthNavigator]="true"
-                                [yearNavigator]="true" yearRange="1920:2120" dateFormat="dd/mm/yy" [showIcon]="true"
-                                showButtonBar="true"></p-calendar>
-                            <label for="float-input">Data de atualização </label>
-                        </span>
-                    </div>
+                   
                 </div>
                 <div class="d-flex justify-content-between mt-2">
                    <!-- <div>
@@ -52,7 +51,15 @@
                         </span> 
                     </div> -->
 
-                   
+                    <div>
+                        <p class="textCor">Data de atualização: </p>
+                        <span class=" ui-float-label">
+                            <p-calendar [(ngModel)]="dataup" [locale]="ptBR" [monthNavigator]="true"
+                                [yearNavigator]="true" yearRange="1920:2120" dateFormat="dd/mm/yy" [showIcon]="true"
+                                showButtonBar="true"></p-calendar>
+                            <label for="float-input">Data de atualização </label>
+                        </span>
+                    </div>
 
                     <div>
                         <p class="textCor">Serviço: </p>
@@ -62,13 +69,13 @@
                         </span>
                     </div>
 
-                    <div>
+                  <!--  <div>
                         <p class="textCor">Valor: </p>
                         <span class=" ui-float-label">
                             <input id="valor" [(ngModel)]="valor" type="text" size="30" pInputText>
                             <label for="float-input">Valor</label>
                         </span>
-                    </div>
+                    </div>-->
                                      
                     <div >
                         <p class="textCor row">Periodo: </p>
