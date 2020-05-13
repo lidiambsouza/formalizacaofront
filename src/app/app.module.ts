@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MenubarModule } from 'primeng/menubar';
@@ -14,7 +14,8 @@ import {PanelModule} from 'primeng/panel';
 import {ToastModule} from 'primeng/toast';
 import {PasswordModule} from 'primeng/password';
 import {DropdownModule} from 'primeng/dropdown';
-import {MessageModule} from 'primeng/message';
+import {CalendarModule} from 'primeng/calendar';
+
 
 import { FormalizacaoComponent } from './formalizacao';
 import { FormalizacaoService, RelatorioService } from './_services';
@@ -31,7 +32,10 @@ import { CadastraruserComponent } from './cadastraruser';
 import { RelatorioPagamentoComponent } from './relatorio-pagamento';
 import { RelatorioGeralComponent } from './relatorio-geral';
 
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
 
+registerLocaleData(localePt, 'pt');
 
 @NgModule({
   declarations: [
@@ -39,12 +43,15 @@ import { RelatorioGeralComponent } from './relatorio-geral';
     FormalizacaoComponent,
     HomeComponent,
     LoginComponent,    
-    CadastraruserComponent, RelatorioPagamentoComponent, RelatorioGeralComponent
+    CadastraruserComponent,
+    RelatorioPagamentoComponent,
+    RelatorioGeralComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
 
@@ -58,7 +65,7 @@ import { RelatorioGeralComponent } from './relatorio-geral';
     PanelModule,
     PasswordModule,
     DropdownModule,    
-    MessageModule,
+    CalendarModule,
   ],
   providers: [
     FormalizacaoService,

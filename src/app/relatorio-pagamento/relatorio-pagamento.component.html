@@ -1,1 +1,108 @@
-<p>relatorio-pagamento works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header"></div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between mt-2">
+                    <div>
+                        <p class="textCor">Consultor: </p>
+                       <p-dropdown [options]="consultores" class="" placeholder="consultor" [(ngModel)]="consultorS"
+                            [virtualScroll]="true" [itemSize]="25" [filter]="true"></p-dropdown>   
+                    </div>
+
+                    <div>
+                        <p class="textCor">Resposta Coban: </p>
+                        <p-dropdown [options]="coban" class="" placeholder="resposta COBAN" [(ngModel)]="cobanS"
+                            [virtualScroll]="true" [itemSize]="25" [filter]="true"></p-dropdown>
+                    </div>
+
+                    <div>
+                        <p class="textCor">Resposta BMG: </p>
+                        <span class="  ui-float-label">
+                            <p-dropdown [options]="bmg" [(ngModel)]="bmgS" 
+                            [virtualScroll]="true" [itemSize]="25" [filter]="true"></p-dropdown>
+                            <label for="float-input">Resposta BMG </label>
+                        </span>
+                    </div>
+
+                    <div>
+                        <p class="textCor">Status: </p>
+                        <span class="  ui-float-label">
+                            <p-dropdown [options]="status" [(ngModel)]="statusS"
+                            [virtualScroll]="true" [itemSize]="25" [filter]="true"></p-dropdown>
+                            <label for="float-input">Status </label>
+                        </span>                       
+                    </div>
+                </div>
+                <div  class="d-flex justify-content-between mt-2">
+                    <div>
+                        <p class="textCor">Data de pagamento: </p>
+                        <span class=" ui-float-label">
+                            <p-calendar [(ngModel)]="datapg" [locale]="ptBR" [monthNavigator]="true" [yearNavigator]="true" yearRange="1920:2120" dateFormat="dd/mm/yy" [showIcon]="true" showButtonBar="true"></p-calendar>
+                           <label for="float-input">Data de pagamento </label>
+                        </span>                       
+                    </div>
+
+                    <div>
+                        <p class="textCor">Data de atualização: </p>
+                        <span class=" ui-float-label">
+                            <p-calendar [(ngModel)]="dataup" [locale]="ptBR" [monthNavigator]="true" [yearNavigator]="true" yearRange="1920:2120" dateFormat="dd/mm/yy" [showIcon]="true" showButtonBar="true"></p-calendar>
+                            <label for="float-input">Data de atualização </label>
+                        </span>                       
+                    </div>
+
+                    <div>
+                        <p class="textCor">Valor: </p>
+                        <span class=" ui-float-label">
+                            <input id="float-input" [(ngModel)]="valor" type="text" size="30" pInputText> 
+                           <label for="float-input">Valor</label>
+                        </span>                       
+                    </div>
+                    <div>
+                        <br>
+                        <br>
+                        <button type="button"  (click)="buscar()"
+                        class="btn btn-outline-danger btn-sm rounded mb-1"><i class="pi pi-search"></i>Buscar</button>
+                    </div>
+                    
+<!-- 
+                    <div >
+                        <p class="textCor row">Periodo: </p>
+                        <div class="row">
+                            <span class="ui-float-label">
+                                <p-calendar [(ngModel)]="datapI" [locale]="ptBR"  [monthNavigator]="true" [yearNavigator]="true" yearRange="1920:2120" dateFormat="dd/mm/yy" [showIcon]="true" showButtonBar="true"></p-calendar>
+                                <label for="float-input ">Data inicial </label>
+                            </span>
+    
+                             <p class="mr-2 ml-2 textCor">a</p>
+                            <span class="ui-float-label">
+                                <p-calendar [(ngModel)]="datapF" [locale]="ptBR"  [monthNavigator]="true" [yearNavigator]="true" yearRange="1920:2120" dateFormat="dd/mm/yy" [showIcon]="true" showButtonBar="true"></p-calendar>
+                                <label for="float-input">Data final </label>
+                            </span>   
+                        </div>
+                                           
+                    </div> -->
+
+                </div>
+                <!--tabela de dados-->
+                <hr class="row mt-3">
+                <hr class="row">
+                <div class="m-5">
+                   
+                    <p class="relValor ">
+                       <span class="font-weight-bolder">Soma do valor: </span><span class="font-italic">{{somaValor}}</span> 
+                    </p>
+                    <p class="relValor ">
+                       <span class="font-weight-bolder">Soma do valor de pagamento:  </span><span>{{somaValorPagamento}}</span>
+                    </p>
+                </div>
+              
+                <!--tabela de dados-->
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

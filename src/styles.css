@@ -21,9 +21,39 @@ body .ui-menubar{
    
 
 }
+.ui-calendar .ui-calendar-button:enabled:hover{
+    background-color: #f2b183;
+    border-color: #f2b183;
+}
+.ui-calendar .ui-calendar-button:enabled:active{
+    background-color: #f2b183;
+    border-color: #f2b183;
+}
+.ui-calendar .ui-calendar-button{
+    background-color: #f2b183;
+    border-color: #f2b183;
+}
+
+.textCor{
+    color:#d8600b;
+}
+
+.ui-float-label>label{
+    color:#717070;
+}
+
+body .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-active{
+    background-color: #f18b42a1;
+}
 
 .nameSistema{
     font-family: 'Monoton';
+    
+}
+.relValor{
+    font-family: 'Lobster', cursive;
+    font-size: 1.5em;
+    color: #ff4b03e0;
     
 }
 .ui-menubar-root-list{

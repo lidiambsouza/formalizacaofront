@@ -18,6 +18,11 @@
     font-size: xx-small;
 }
 
+body .ui-button {
+    background-color: #f2b183;
+    border-color: #f2b183;
+}
+
 .loading-text {
     display: block;
     background-color: #f1f1f1;
